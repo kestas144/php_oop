@@ -1,6 +1,6 @@
 <?php
 namespace Src;
-use Src\ReservableInterface;
+
 
 abstract class Room implements ReservableInterface
 {
@@ -12,6 +12,7 @@ abstract class Room implements ReservableInterface
     private $roomNumber;
     private $extras = [];
     private $price;
+    private $reservations = [];
 
     function __construct(int $bedCount,string $roomType,bool $hasRestRoom, bool $hasBalcony, array $extras)
     {
@@ -140,10 +141,22 @@ abstract class Room implements ReservableInterface
         $this->price = $price;
     }
 
-    public function test(){
-
-        return 'Wroks';
+    public function addReservation($reservation)
+    {
+       array_push($this->reservations, $reservation);
 
     }
+
+    public function removeReservation($reservation)
+    {
+        array_diff($this->reservations, $reservation);
+    }
+
+    public function __toString() :string
+    {
+        return "<strong>".$this->getRoomNumber()."</strong>";
+    }
+
+
 
 }
