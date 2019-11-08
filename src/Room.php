@@ -141,20 +141,19 @@ abstract class Room implements ReservableInterface
         $this->price = $price;
     }
 
-    public function addReservation($reservation)
+    public function addReservation(array $reservation)
     {
-       array_push($this->reservations, $reservation);
-
+      array_push($this->reservations, $reservation);
     }
 
-    public function removeReservation($reservation)
+    public function removeReservation( $reservation)
     {
-        array_diff($this->reservations, $reservation);
+
     }
 
     public function __toString() :string
     {
-        return "<strong>".$this->getRoomNumber()."</strong>";
+        return $this->roomNumber;
     }
 
 
