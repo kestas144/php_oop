@@ -143,14 +143,42 @@ abstract class Room implements ReservableInterface
 
     public function addReservation(array $reservation)
     {
-      array_push($this->reservations, $reservation);
+        if (!empty($this->reservations)&&($this->checkDublicateDate($reservation) === false)){
+            throw new ReservationException('!!!!!!!Room is already reserved by this date');
+       }
+       else {
+        array_push($this->reservations, $reservation);
+    }
+
     }
 
     public function removeReservation( $reservation)
     {
 
     }
-
+    private function checkDublicateDate(array $reservation)
+    {
+        foreach ($this->reservations as $key => $element) {
+            if (
+                (
+                    ($reservation['startDate'] < $element['startDate'])
+                    ||
+                    ($reservation['startDate'] > $element['endDate'])
+                )
+                &&
+                (
+                    ($reservation['endDate'] < $element['startDate'])
+                    ||
+                    ($reservation['endDate'] > $element['endDate'])
+                )
+                )
+                {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
     public function __toString() :string
     {
         return $this->roomNumber;
