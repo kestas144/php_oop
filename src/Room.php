@@ -5,16 +5,16 @@ namespace Src;
 abstract class Room implements ReservableInterface
 {
 
-    private $roomType;
-    private $hasRestRoom;
-    private $hasBalcony;
-    private $bedCount;
-    private $roomNumber;
-    private $extras = [];
-    private $price;
-    private $reservations = [];
+    protected $roomType;
+    protected $hasRestRoom;
+    protected $hasBalcony;
+    protected $bedCount;
+    protected $roomNumber;
+    protected $extras = [];
+    protected $price;
+    protected $reservations = [];
 
-    function __construct(int $bedCount,string $roomType,bool $hasRestRoom, bool $hasBalcony, array $extras)
+    public function __construct(int $bedCount,string $roomType,bool $hasRestRoom, bool $hasBalcony, array $extras)
     {
         $this->setBedCount($bedCount);
         $this->setRoomType($roomType);
@@ -178,10 +178,6 @@ abstract class Room implements ReservableInterface
                 return false;
             }
         }
-    }
-    public function __toString() :string
-    {
-        return $this->roomNumber;
     }
 
 

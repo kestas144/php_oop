@@ -12,15 +12,9 @@ class Apartment extends Room
         $this->setRoomNumber($roomNumber);
         $this->setPrice($price);
     }
-    public function getData(){
-        return
-            "bedCount ". $this->getBedCount()
-            ." RoomType ".$this->getRoomType()
-            ." ".$this->getHasRestRoom()
-            ." ".$this->getHasBalcony()
-            ." Price ".$this->getPrice()
-            ." RoomNumber ".$this->getRoomNumber();
 
-
+    public function __toString() :string
+    {
+        return $this->roomNumber;
     }
 }

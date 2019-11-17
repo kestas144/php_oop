@@ -1,7 +1,7 @@
 <?php
 namespace Src;
 
-class BedRoom extends Room
+final class BedRoom extends Room
 {
     private $extraArray = ['TV', 'air-conditioner','refrigerator', 'minibar', 'bathtub'];
 
@@ -11,15 +11,9 @@ class BedRoom extends Room
         $this->setRoomNumber($roomNumber);
         $this->setPrice($price);
     }
-    public function getData(){
-        return
-            "bedCount ". $this->getBedCount()
-            ." RoomType ".$this->getRoomType()
-            ." ".$this->getHasRestRoom()
-            ." ".$this->getHasBalcony()
-            ." Price ".$this->getPrice()
-            ." RoomNumber ".$this->getRoomNumber();
 
-
+    public function __toString() :string
+    {
+        return $this->roomNumber;
     }
 }
